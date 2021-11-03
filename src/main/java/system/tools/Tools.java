@@ -17,7 +17,6 @@ public class Tools
 		System.out.println(listToJson(dataList));
 	}
 	
-	
 	public static String mapToJson(Map<String, String> dataMap)
 	{
 		StringBuilder result = new StringBuilder("[");
