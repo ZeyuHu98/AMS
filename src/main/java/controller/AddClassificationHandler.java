@@ -22,7 +22,7 @@ public class AddClassificationHandler implements RequestHandler<Map<String, Obje
 		logger.log("Load AddClassificationHandler");
 		logger.log(request.toString());
 		
-		int statusCode = 201;
+		int statusCode = 200;
 		try
 		{
 			impl.setDto(request);
