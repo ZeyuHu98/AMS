@@ -12,7 +12,9 @@ public class ImplementationImpl extends JdbcServicesSupport
 {
 	public List<Map<String, String>> query() throws Exception
 	{
-		return queryForList("select * from implementation");
+		Object[] args = {getFromDto("aid")};
+		return queryForList("select * from implementation "
+				+ "where aid = ?", args);
 	}
 	
 	public boolean addImplementation() throws Exception
