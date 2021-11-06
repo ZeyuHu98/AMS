@@ -1,58 +1,50 @@
 package controller;
 
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.google.gson.Gson;
 
+import controller.support.Response;
 import services.impl.AlgorithmImpl;
+import services.impl.ImplementationImpl;
 import services.impl.ProblemInstanceImpl;
-import system.tools.Tools;
 
-public class QueryAlgorithmHandler implements RequestHandler<Map<String, Object>, Map<String, Object>> 
+public class QueryAlgorithmHandler implements RequestHandler<Map<String, Object>, Response> 
 {
 	LambdaLogger logger;
 	AlgorithmImpl impl1 = new AlgorithmImpl();
 	ProblemInstanceImpl impl2 = new ProblemInstanceImpl();
+	ImplementationImpl impl3 = new ImplementationImpl();
 
-	
 	@Override
-	public Map<String, Object> handleRequest(Map<String, Object> request, Context context) 
+	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
 		logger = context.getLogger();
 		logger.log("Load QueryAlgorithmHandler.");
 		logger.log(request.toString());
 		
-		String code;
-		boolean success;
-		String msg;
-		Map<String, Object> data = new HashMap<>();
+		impl1.setDto(request);
+		impl2.setDto(request);
+		impl3.setDto(request);
 		
+		Response response;
 		try
 		{
-			impl1.setDto(request);
-			impl2.setDto(request);
-
+			Map<String, Object> data = new HashMap<>();
 			data.put("algorithmMap", impl1.querySingle());
 			data.put("problemInstanceList", impl2.query());
+			data.put("implementationList", impl3.query());
 			
-			code = "200";
-			success = true;
-			msg = "Query algorithm succeed.";
+			response = new Response(200, "Query algorithm succeed.", true, data);
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			code = "400";
-			success = false;
-			msg = "Exception encountered.";
+			response = new Response();
 		}
-		Map<String, Object> response = new HashMap<>();
-		Tools.setResponse(response, code, data, msg, success);
 		return response;
 	}
 }

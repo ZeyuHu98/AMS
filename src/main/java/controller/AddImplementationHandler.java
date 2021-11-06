@@ -4,41 +4,42 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import controller.support.Response;
 import services.impl.ImplementationImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddImplementationHandler implements RequestHandler<Map<String, Object>, Map<String, Object>>
+public class AddImplementationHandler implements RequestHandler<Map<String, Object>, Response>
 {
 
 	LambdaLogger logger; 
 	ImplementationImpl impl = new ImplementationImpl();
 	
 	@Override
-	public Map<String, Object> handleRequest(Map<String, Object> request, Context context) 
+	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
 		logger = context.getLogger();
-		logger.log("Load AddClassificationHandler");
+		logger.log("Load AddImplementationHandler");
 		logger.log(request.toString());
 		
-		int statusCode = 201;
+		impl.setDto(request);
+		Response response;
 		try
 		{
-			impl.setDto(request);
-			boolean b = impl.addImplementation();
-			if (!b)
-				statusCode = 400;
+			boolean success = impl.addImplementation();
+			if (success)
+				response = new Response(200, "Add implementation succeed.", true);
+			else
+				response = new Response(304, "Add implementation failed.", false);
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
+			response = new Response();
 		}
-
-		Map<String, Object> map = new HashMap<>();
-		map.put("statusCode", statusCode);
 		
-		return map;
+		return response;
 	}
 	
 }

@@ -46,8 +46,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 	public Map<String, String> querySingle() throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("select name, introduction, content, timecplx, spacecplx, bucketurl from")
-				.append("algorithm where aid = ?");
+				.append("select * from algorithm where aid = ?");
 		Object[] args = {getFromDto("aid")};
 		return this.queryForMap(sql.toString(), args);
 	}

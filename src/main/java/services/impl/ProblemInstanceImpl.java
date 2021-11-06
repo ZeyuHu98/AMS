@@ -10,8 +10,7 @@ public class ProblemInstanceImpl extends JdbcServicesSupport
 	public List<Map<String, String>> query() throws Exception
 	{
 		StringBuilder sql =  new StringBuilder()
-				.append("select pid, type, instance, bucketurl from probleminstance")
-				.append("where aid = ?");
+				.append("select * from probleminstance where aid = ?");
 		Object[] args = {getFromDto("aid")};
 		return queryForList(sql.toString(), args);
 	}

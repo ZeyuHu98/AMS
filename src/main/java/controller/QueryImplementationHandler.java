@@ -22,7 +22,7 @@ public class QueryImplementationHandler implements RequestHandler<Map<String, Ob
 	public Map<String, Object> handleRequest(Map<String, Object> request, Context context)
 	{
 		logger = context.getLogger();
-		logger.log("Load QueryClassificationHandler");
+		logger.log("Load QueryImplementation");
 		logger.log(request.toString());
 		List<Map<String, String>> dataList = new ArrayList<>();
 		int statusCode = 200;
