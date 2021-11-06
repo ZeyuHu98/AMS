@@ -5,34 +5,41 @@ import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import controller.support.Response;
 import services.impl.UserImpl;
 import system.tools.Tools;
 
-public class LoginHandler implements RequestHandler<Map<String, Object>, Map<String, Object>>
+public class LoginHandler implements RequestHandler<Map<String, Object>, Response>
 {
 	LambdaLogger logger;
 	UserImpl impl = new UserImpl();
-	
+
 	@Override
-	public Map<String, Object> handleRequest(Map<String, Object> request, Context context)
+	public Response handleRequest(Map<String, Object> request, Context context)
 	{
 		logger = context.getLogger();
-		impl = new UserImpl();
 		logger.log("Load LoginHandler");
-		Map<String, Object> response = new HashMap<>();
-		String statusCode = "200";
+		logger.log(request.toString());
+			
+		impl.setDto(request);
+		Response response;
+		
 		try
 		{
-			impl.setDto(request);
-			response.putAll(impl.login());
+			Map<String, String> map = impl.login();
+			if (map == null)
+				response = new Response(304, "Login fail. Wrong username or password.", false);
+			else
+				response = new Response(304, "Login fail. Wrong username or password.", false, map);
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			statusCode = "400";
+			response = new Response();
 		}
-		response.put("statusCode", statusCode);
 		return response;
 	}
 }

@@ -1,38 +1,41 @@
 package controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import controller.support.Response;
 import services.impl.UserImpl;
-import system.tools.Tools;
 
-public class RegisterHandler implements RequestHandler<Map<String, Object>, Map<String, Object>>
+public class RegisterHandler implements RequestHandler<Map<String, Object>, Response>
 {
 	LambdaLogger logger;
 	UserImpl impl = new UserImpl();
 	
 	@Override
-	public Map<String, Object> handleRequest(Map<String, Object> request, Context context)
+	public Response handleRequest(Map<String, Object> request, Context context)
 	{
 		logger = context.getLogger();
-		impl = new UserImpl();
 		logger.log("Load RegisterHandler");
-		Map<String, Object> response = new HashMap<>();
-		String statusCode = "200";
+		logger.log(request.toString());
+		
+		impl.setDto(request);
+		
+		Response response;
 		try
 		{
-			impl.setDto(request);
-			response.putAll(impl.login());
+			boolean success = impl.register();
+			if (success)
+				response = new Response(200, "Register succeed.", true);
+			else
+				response = new Response(304, "Register fail. Username already existed.", false);
 		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			statusCode = "400";
+			response = new Response();
 		}
-		response.put("statusCode", statusCode);
 		return response;
 	}
 }

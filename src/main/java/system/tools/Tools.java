@@ -1,38 +1,40 @@
 package system.tools;
 
-import java.util.Map.Entry;
+import java.util.Map;
+
+import com.google.gson.Gson;
 
 import services.impl.ClassificationImpl;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import services.impl.UserImpl;
 
 public class Tools
 {
-	public static void main(String[] args) throws Exception
+	public static void main(String[] args) throws Exception 
 	{
-		ClassificationImpl impl = new ClassificationImpl();
-		List<Map<String, String>> dataList = impl.query();
-		System.out.println(listToJson(dataList));
+		UserImpl impl = new UserImpl();
+		System.out.println(gson.toJson(impl.loginTest()).replaceAll("\\", ""));
 	}
 	
-	public static String mapToJson(Map<String, String> dataMap)
+	private static Gson gson = new Gson();
+	
+	public static String toJson(Object o)
 	{
-		StringBuilder result = new StringBuilder("[");
-		for (Entry<String, String> entry : dataMap.entrySet())
-			result.append(entry.getKey()).append(" : ").append(entry.getValue()).append(",");
-		result.deleteCharAt(result.length()-1);
-		result.append("]");
-		return result.toString();
+		return gson.toJson(o);
 	}
 	
-	public static String listToJson(List<Map<String, String>> dataList)
+	public static void setResponse(Map<String, Object> response, String code, Object data, String msg, boolean success)
 	{
-		StringBuilder result = new StringBuilder("[");
-		for (Map<String, String> dataMap : dataList)
-			result.append(mapToJson(dataMap)).append("\r\n");
-		result.append("]");
-		return result.toString();
+		response.put("code", code);
+		response.put("data", data);
+		response.put("msg", msg);
+		response.put("success", success);
+	}
+	
+	public static void setResponse(Map<String, Object> response, int code, Object data, String msg, boolean success)
+	{
+		response.put("code", code);
+		response.put("data", data);
+		response.put("msg", msg);
+		response.put("success", success);
 	}
 }

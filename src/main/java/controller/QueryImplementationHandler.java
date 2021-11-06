@@ -38,7 +38,7 @@ public class QueryImplementationHandler implements RequestHandler<Map<String, Ob
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("statusCode", statusCode);
-		map.put("dataList", Tools.listToJson(dataList));
+		map.put("dataList", Tools.toJson(dataList));
 		
 		return map;
 	}
