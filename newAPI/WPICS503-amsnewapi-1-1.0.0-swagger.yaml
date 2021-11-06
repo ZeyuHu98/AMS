@@ -1,0 +1,530 @@
+---
+swagger: "2.0"
+info:
+  description: "API"
+  version: "1.0.0"
+  title: "AMSNEWAPI1"
+host: "hka1jrokz2.execute-api.us-east-2.amazonaws.com"
+basePath: "/Alpha"
+schemes:
+- "https"
+paths:
+  /classification:
+    get:
+      operationId: "getClassification"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ArrayOfClassification"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+          
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: GET
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+          
+          
+  /classification/Algorithm:
+    get:
+      operationId: "getAlgorithm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+          
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: GET
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+          
+          
+          
+  /classification/Algorithm/add:
+    post:
+      operationId: "addAlgorithm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "304":
+          description: "304 same algorithm name"
+        "400":
+          description: "400 response"
+          
+    x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+          
+          
+  /classification/Implementation:
+    get:
+      operationId: "getImplementation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        
+        "400":
+          description: "400 response"
+    x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: GET
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+  /classification/Implementation/add:
+    post:
+      operationId: "addImplementation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+    x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+  /classification/add:
+    post:
+      operationId: "addClassification"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+        "304":
+          description: "same classification name"
+    x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+  /login:
+    post:
+      operationId: "login"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Access-Control-Allow-Origin"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+        "304":
+          description: "304 response"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+  /register:
+    post:
+      operationId: "register"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+        "400":
+          description: "400 response"
+        "304":
+          description: "304 response"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''        
+        uri: https://www.google.com
+        passthroughBehavior: when_no_match
+        httpMethod: POST
+        type: http  
+        
+    options:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+            Access-Control-Allow-Methods:
+              type: string
+            Access-Control-Allow-Headers:
+              type: string
+
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''POST,GET,OPTIONS'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        type: mock
+definitions:
+  Classification:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+  ArrayOfClassification:
+    type: "array"
+    items:
+      $ref: "#/definitions/Classification"
