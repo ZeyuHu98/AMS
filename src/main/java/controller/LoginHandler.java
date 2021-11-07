@@ -1,16 +1,12 @@
 package controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import controller.support.Response;
 import services.impl.UserImpl;
-import system.tools.Tools;
 
 public class LoginHandler implements RequestHandler<Map<String, Object>, Response>
 {
@@ -29,11 +25,11 @@ public class LoginHandler implements RequestHandler<Map<String, Object>, Respons
 		
 		try
 		{
-			Map<String, String> map = impl.login();
-			if (map == null)
-				response = new Response(304, "Login fail. Wrong username or password.", false);
+			Map<String, String> data = impl.login();
+			if (data == null)
+				response = new Response(200, "Login fail. Wrong username or password.", false);
 			else
-				response = new Response(304, "Login fail. Wrong username or password.", false, map);
+				response = new Response(200, "Login succeed.", true, data);
 		}
 		catch (Exception e) 
 		{

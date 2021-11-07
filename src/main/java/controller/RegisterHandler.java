@@ -29,7 +29,7 @@ public class RegisterHandler implements RequestHandler<Map<String, Object>, Resp
 			if (success)
 				response = new Response(200, "Register succeed.", true);
 			else
-				response = new Response(304, "Register fail. Username already existed.", false);
+				response = new Response(200, "Register fail. Username already existed.", false);
 		}
 		catch (Exception e) 
 		{
