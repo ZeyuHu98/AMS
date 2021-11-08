@@ -12,13 +12,11 @@ public class Classification
 	public int parentcid;
 	public int depth;
 	
-	public List<Classification> subClassifications;
-	public List<Map<String, String>> subAlgorithms;
+	public List<Object> sub;
 	
 	public Classification(Map<String, String> classificationMap)
 	{
-		subClassifications = new ArrayList<>();
-		subAlgorithms = new ArrayList<>();
+		sub = new ArrayList<>();
 		try 
 		{
 			cid = Integer.parseInt(classificationMap.get("cid"));

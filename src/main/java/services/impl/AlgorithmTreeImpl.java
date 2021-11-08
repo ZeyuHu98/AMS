@@ -24,13 +24,17 @@ public class AlgorithmTreeImpl extends JdbcServicesSupport
 		
 		for (Classification c : cidToClf.values())
 			if (c.parentcid != 0)
-				cidToClf.get(c.parentcid).subClassifications.add(c);
+				cidToClf.get(c.parentcid).sub.add(c);
 
 		
-		List<Map<String, String>> algorithmList =  queryForList("select * from algorithm");
+		List<Map<String, String>> algorithmList =  queryForList("select aid, name, url, parentcid from algorithm");
 		
-		for (Map<String, String> map : algorithmList) 
-			cidToClf.get(Integer.parseInt(map.get("parentcid"))).subAlgorithms.add(map);
+		for (Map<String, String> map : algorithmList)
+		{
+			cidToClf.get(Integer.parseInt(map.get("parentcid"))).sub.add(map);
+			map.remove("parentcid");
+		}
+
 		
 		// result includes classifications with depth 0
 		List<Classification> result = new ArrayList<>();
