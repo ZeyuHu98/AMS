@@ -18,8 +18,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 			StringBuilder sql = new StringBuilder()
 					.append("insert into algorithm(url, parentcid, name, introduction,")
 					.append("content, timecplx, spacecplx) values (?,?,?,?,?,?,?)");
-			String url = DOMAINNAME + "/" + getFromDto("name");
-			Object[] args = {url, getFromDto("parentcid"), getFromDto("name"), getFromDto("introduction"),
+			Object[] args = {"", getFromDto("parentcid"), getFromDto("name"), getFromDto("introduction"),
 					getFromDto("content"), getFromDto("timecplx"), getFromDto("spacecplx")
 			};
 			this.executeUpdate(sql.toString(), args);

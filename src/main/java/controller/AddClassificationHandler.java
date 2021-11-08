@@ -33,7 +33,7 @@ public class AddClassificationHandler implements RequestHandler<Map<String, Obje
 			if (success)
 				response = new Response(200, "Add classification succeed.", success);
 			else
-				response = new Response(304, "Add calssification fail.", success);
+				response = new Response(200, "Add calssification fail.", success);
 		}
 		catch (Exception e) 
 		{

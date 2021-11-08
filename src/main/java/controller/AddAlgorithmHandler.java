@@ -27,7 +27,21 @@ public class AddAlgorithmHandler implements RequestHandler<Map<String, Object>, 
 		
 		Response response;
 
-		return null;
+		try
+		{
+			impl.setDto(request);
+			boolean success = impl.addAlgorithm();
+			if (success)
+				response = new Response(200, "Add algorithm succeed.", success);
+			else
+				response = new Response(200, "Add algorithm fail.", success);
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			response = new Response();
+		}
+		return response;
 	}
 	
 }

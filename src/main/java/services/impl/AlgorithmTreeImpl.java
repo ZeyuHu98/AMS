@@ -10,6 +10,17 @@ import services.support.JdbcServicesSupport;
 
 public class AlgorithmTreeImpl extends JdbcServicesSupport
 {
+	public static void main(String[] args)
+	{
+		AlgorithmTreeImpl impl = new AlgorithmTreeImpl();
+		try {
+			impl.queryTree();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public List<Classification> queryTree() throws Exception
 	{
@@ -19,8 +30,6 @@ public class AlgorithmTreeImpl extends JdbcServicesSupport
 
 		for (Map<String, String> map : classificationList)
 			cidToClf.put(Integer.parseInt(map.get("cid")), new Classification(map));
-
-		System.out.println(cidToClf);
 		
 		for (Classification c : cidToClf.values())
 			if (c.parentcid != 0)
