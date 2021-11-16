@@ -16,7 +16,7 @@ public class ClassificationImpl extends JdbcServicesSupport
 	public boolean addClassification() throws Exception
 	{
 		boolean res = true;
-		int parentcid = Integer.parseInt((String)this.getFromDto("parentcid"));
+		int parentcid = Integer.parseInt(this.getFromDto("parentcid").toString());
 		int depth;
 		if (parentcid != 0)
 		{

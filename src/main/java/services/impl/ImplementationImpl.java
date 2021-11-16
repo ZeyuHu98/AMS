@@ -3,8 +3,6 @@ package services.impl;
 import java.util.List;
 import java.util.Map;
 
-import com.amazonaws.services.kinesisfirehose.model.ExtendedS3DestinationConfiguration;
-
 import services.support.JdbcServicesSupport;
 import system.db.DBUtils;
 
@@ -24,8 +22,8 @@ public class ImplementationImpl extends JdbcServicesSupport
 		try 
 		{
 			StringBuilder sql = new StringBuilder()
-					.append("insert into implementation(aid, url, language, code) values (?,?,?,?);");
-			Object[] args = {getFromDto("aid"), getFromDto("url"), getFromDto("language"), getFromDto("code")};
+					.append("insert into implementation(aid, language, code) values (?,?,?);");
+			Object[] args = {getFromDto("aid"), getFromDto("language"), getFromDto("code")};
 			this.executeUpdate(sql.toString(), args);
 		}
 		catch (Exception e)

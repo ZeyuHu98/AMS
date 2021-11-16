@@ -46,7 +46,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql = new StringBuilder()
 				.append("select * from algorithm where aid = ?");
-		Object[] args = {getFromDto("aid")};
+		Object[] args = {this.getFromDto("aid")};
 		return this.queryForMap(sql.toString(), args);
 	}
 }
