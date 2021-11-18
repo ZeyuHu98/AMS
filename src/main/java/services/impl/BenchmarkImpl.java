@@ -82,5 +82,60 @@ public class BenchmarkImpl extends JdbcServicesSupport
 	}
 	
 	
+	public boolean deleteBenchmarkByImplementation() throws Exception
+	{
+		boolean res = true;
+		DBUtils.beginTransaction();
+		try 
+		{
+			
+			StringBuilder sql1 = new StringBuilder()
+					.append("delete from benchmark where iid = ?");
+			Object[] args1 = {getFromDto("iid")};
+			this.executeUpdate(sql1.toString(), args1);			
+			
+		}
+		catch (Exception e)
+		{
+			res = false;
+			DBUtils.rollback();
+			e.printStackTrace();
+		}
+		finally 
+		{
+			DBUtils.commit();
+			DBUtils.close();// TODO: handle finally clause
+		}
+		return res;
+	}
+	
+	
+	public boolean deleteBenchmarkByProblemInstance() throws Exception
+	{
+		boolean res = true;
+		DBUtils.beginTransaction();
+		try 
+		{
+			
+			StringBuilder sql1 = new StringBuilder()
+					.append("delete from benchmark where pid = ?");
+			Object[] args1 = {getFromDto("pid")};
+			this.executeUpdate(sql1.toString(), args1);			
+			
+		}
+		catch (Exception e)
+		{
+			res = false;
+			DBUtils.rollback();
+			e.printStackTrace();
+		}
+		finally 
+		{
+			DBUtils.commit();
+			DBUtils.close();// TODO: handle finally clause
+		}
+		return res;
+	}
+	
 	
 }
