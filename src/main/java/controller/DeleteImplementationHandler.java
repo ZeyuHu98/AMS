@@ -13,17 +13,12 @@ import java.util.Map;
 
 public class DeleteImplementationHandler implements RequestHandler<Map<String, Object>, Response>
 {
-
-	LambdaLogger logger; 
 	ImplementationImpl iImpl = new ImplementationImpl();
 	BenchmarkImpl bImpl = new BenchmarkImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddImplementationHandler");
-		logger.log(request.toString());
 		
 		iImpl.setDto(request);
 		bImpl.setDto(request);

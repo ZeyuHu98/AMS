@@ -2,11 +2,15 @@ package services.impl;
 
 import java.util.List;
 import java.util.Map;
+
+import com.amazonaws.services.dynamodbv2.model.Select;
+
 import services.support.JdbcServicesSupport;
 import system.db.DBUtils;
 
 public class AlgorithmImpl extends JdbcServicesSupport
 {
+	UserActivityImpl impl = new UserActivityImpl();
 	static String DOMAINNAME = "";
 	
 	public boolean addAlgorithm() throws Exception
@@ -22,6 +26,14 @@ public class AlgorithmImpl extends JdbcServicesSupport
 					getFromDto("content"), getFromDto("timecplx"), getFromDto("spacecplx")
 			};
 			this.executeUpdate(sql.toString(), args);
+			
+			
+			//update activity
+			String sql2 = "select aid from algorithm where name = ? and parentcid = ?";
+			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
+			int oid = Integer.parseInt(queryForMap(sql2, args2).get("aid"));
+			impl.update("add algorithm", oid);
+			
 		} 
 		catch (Exception e) 
 		{

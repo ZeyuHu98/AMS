@@ -12,17 +12,12 @@ import java.util.Map;
 
 public class AddImplementationHandler implements RequestHandler<Map<String, Object>, Response>
 {
-
-	LambdaLogger logger; 
 	ImplementationImpl impl = new ImplementationImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddImplementationHandler");
-		logger.log(request.toString());
-		
+
 		impl.setDto(request);
 		Response response;
 		try

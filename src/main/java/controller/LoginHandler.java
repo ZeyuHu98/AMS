@@ -10,16 +10,11 @@ import services.impl.UserImpl;
 
 public class LoginHandler implements RequestHandler<Map<String, Object>, Response>
 {
-	LambdaLogger logger;
 	UserImpl impl = new UserImpl();
 
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context)
 	{
-		logger = context.getLogger();
-		logger.log("Load LoginHandler");
-		logger.log(request.toString());
-			
 		impl.setDto(request);
 		Response response;
 		

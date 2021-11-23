@@ -12,17 +12,11 @@ import java.util.Map;
 
 public class DeleteBenchmark implements RequestHandler<Map<String, Object>, Response>
 {
-
-	LambdaLogger logger; 
 	BenchmarkImpl impl = new BenchmarkImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddImplementationHandler");
-		logger.log(request.toString());
-		
 		impl.setDto(request);
 		Response response;
 		try

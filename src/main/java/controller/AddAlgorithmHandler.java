@@ -7,6 +7,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import controller.support.Response;
 import services.impl.AlgorithmImpl;
 import services.impl.ClassificationImpl;
+import services.impl.UserActivityImpl;
 import system.tools.Tools;
 
 import java.util.HashMap;
@@ -15,18 +16,13 @@ import java.util.Map;
 public class AddAlgorithmHandler implements RequestHandler<Map<String, Object>, Response>
 {
 
-	LambdaLogger logger; 
 	AlgorithmImpl impl = new AlgorithmImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddAlogorithm Handler.");
-		logger.log(request.toString());
-		
 		Response response;
-
+		
 		try
 		{
 			impl.setDto(request);

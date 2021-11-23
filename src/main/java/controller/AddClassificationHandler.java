@@ -13,17 +13,11 @@ import java.util.Map;
 
 public class AddClassificationHandler implements RequestHandler<Map<String, Object>, Response>
 {
-
-	LambdaLogger logger; 
 	ClassificationImpl impl = new ClassificationImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddClassificationHandler");
-		logger.log(request.toString());
-		
 		Response response;
 
 		try

@@ -13,18 +13,12 @@ import java.util.Map;
 
 public class DeleteProbleminstanceHandler implements RequestHandler<Map<String, Object>, Response>
 {
-
-	LambdaLogger logger; 
 	ProblemInstanceImpl pImpl = new ProblemInstanceImpl();
 	BenchmarkImpl bImpl = new BenchmarkImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddImplementationHandler");
-		logger.log(request.toString());
-		
 		pImpl.setDto(request);
 		bImpl.setDto(request);
 		Response response;

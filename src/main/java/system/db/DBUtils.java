@@ -41,7 +41,7 @@ public class DBUtils
 			driver="com.mysql.jdbc.Driver";
 			url="jdbc:mysql://systemdb.cjshep01ouqy.us-east-2.rds.amazonaws.com/app";
 			userName="admin";
-			password="12345678";
+			password="fuckthestupidhacker";
 			//3.��������
 			Class.forName(driver);
 		}

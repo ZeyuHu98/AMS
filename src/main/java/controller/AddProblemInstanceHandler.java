@@ -13,16 +13,11 @@ import java.util.Map;
 public class AddProblemInstanceHandler implements RequestHandler<Map<String, Object>, Response>
 {
 
-	LambdaLogger logger; 
 	ProblemInstanceImpl impl = new ProblemInstanceImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		logger = context.getLogger();
-		logger.log("Load AddProblemInstanceHandler");
-		logger.log(request.toString());
-		
 		impl.setDto(request);
 		Response response;
 		try
