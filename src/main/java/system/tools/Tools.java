@@ -12,7 +12,6 @@ public class Tools
 	public static void main(String[] args) throws Exception 
 	{
 		UserImpl impl = new UserImpl();
-		System.out.println(gson.toJson(impl.loginTest()).replaceAll("\\", ""));
 	}
 	
 	private static Gson gson = new Gson();

@@ -8,6 +8,8 @@ import system.db.DBUtils;
 
 public class ClassificationImpl extends JdbcServicesSupport
 {
+	UserActivityImpl impl = new UserActivityImpl();
+	
 	public List<Map<String, String>> query() throws Exception
 	{
 		return queryForList("select * from classification");
@@ -33,6 +35,11 @@ public class ClassificationImpl extends JdbcServicesSupport
 					.append("insert into classification(url, parentcid, name, depth) values (?,?,?,?);");
 			Object[] args = {getFromDto("url"), getFromDto("parentcid"), getFromDto("name"), depth};
 			this.executeUpdate(sql.toString(), args);
+			
+			String sql2 = "select cid from classification where name = ? and parentcid = ?";
+			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
+			
+			impl.update("add classification", queryForMap(sql2, args2).get("cid"));
 		}
 		catch (Exception e)
 		{
@@ -46,5 +53,10 @@ public class ClassificationImpl extends JdbcServicesSupport
 			DBUtils.close();// TODO: handle finally clause
 		}
 		return res;
+	}
+	
+	public boolean delete()
+	{
+		return false;
 	}
 }

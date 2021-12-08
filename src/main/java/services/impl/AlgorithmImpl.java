@@ -27,11 +27,10 @@ public class AlgorithmImpl extends JdbcServicesSupport
 			};
 			this.executeUpdate(sql.toString(), args);
 			
-			
 			//update activity
 			String sql2 = "select aid from algorithm where name = ? and parentcid = ?";
 			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
-			int oid = Integer.parseInt(queryForMap(sql2, args2).get("aid"));
+			String oid = queryForMap(sql2, args2).get("aid");
 			impl.update("add algorithm", oid);
 			
 		} 
@@ -58,7 +57,12 @@ public class AlgorithmImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql = new StringBuilder()
 				.append("select * from algorithm where aid = ?");
-		Object[] args = {this.getFromDto("aid")};
+		Object[] args = {getFromDto("aid")};
 		return this.queryForMap(sql.toString(), args);
+	}
+	
+	public boolean delete()
+	{
+		return false;
 	}
 }

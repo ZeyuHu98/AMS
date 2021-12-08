@@ -63,7 +63,6 @@ public class ImplementationImpl extends JdbcServicesSupport
 				res = false;
 			}
 			
-			
 		}
 		catch (Exception e)
 		{
