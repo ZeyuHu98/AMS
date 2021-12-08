@@ -31,7 +31,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 			String sql2 = "select aid from algorithm where name = ? and parentcid = ?";
 			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
 			String oid = queryForMap(sql2, args2).get("aid");
-			impl.update("add algorithm", oid);
+			impl.update("add algorithm", (String)getFromDto("uid"), oid);
 			
 		} 
 		catch (Exception e) 

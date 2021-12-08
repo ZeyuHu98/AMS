@@ -39,7 +39,7 @@ public class ClassificationImpl extends JdbcServicesSupport
 			String sql2 = "select cid from classification where name = ? and parentcid = ?";
 			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
 			
-			impl.update("add classification", queryForMap(sql2, args2).get("cid"));
+			impl.update("add classification", (String)getFromDto("uid"), queryForMap(sql2, args2).get("cid"));
 		}
 		catch (Exception e)
 		{

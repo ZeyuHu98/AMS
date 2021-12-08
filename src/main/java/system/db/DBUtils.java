@@ -38,12 +38,12 @@ public class DBUtils
 //			userName=bundle.getString("USERNAME");
 //			password=bundle.getString("PASSWORD");
 			
-			driver="com.mysql.jdbc.Driver";
+//			driver="com.mysql.jdbc.Driver";
 			url="jdbc:mysql://systemdb.cjshep01ouqy.us-east-2.rds.amazonaws.com/app";
 			userName="admin";
 			password="fuckthestupidhacker";
 			//3.��������
-			Class.forName(driver);
+//			Class.forName(driver);
 		}
 		catch (Exception e) 
 		{

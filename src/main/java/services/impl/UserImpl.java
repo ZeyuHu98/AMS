@@ -12,9 +12,13 @@ public class UserImpl extends JdbcServicesSupport
 		StringBuilder sql = new StringBuilder("select uid, uname, type from user WHERE uname = ? and password = ?");
 		Object[] args = {this.getFromDto("uname"), this.getFromDto("password")};
 		Map<String, String> dataMap = queryForMap(sql.toString(), args);
-		
-		impl.update("user login", dataMap.get("uid"));
-		
+		try
+		{
+			impl.update("user login", dataMap.get("uid"));
+		}
+		catch (NullPointerException e) {
+			
+		}
 		return dataMap;
 	}
 
