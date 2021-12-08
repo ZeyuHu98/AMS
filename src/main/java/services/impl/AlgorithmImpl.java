@@ -11,6 +11,7 @@ import system.db.DBUtils;
 public class AlgorithmImpl extends JdbcServicesSupport
 {
 	UserActivityImpl impl = new UserActivityImpl();
+	
 	static String DOMAINNAME = "";
 	
 	public boolean addAlgorithm() throws Exception
@@ -61,8 +62,5 @@ public class AlgorithmImpl extends JdbcServicesSupport
 		return this.queryForMap(sql.toString(), args);
 	}
 	
-	public boolean delete()
-	{
-		return false;
-	}
+
 }
