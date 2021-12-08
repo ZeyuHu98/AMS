@@ -26,7 +26,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 					getFromDto("content"), getFromDto("timecplx"), getFromDto("spacecplx")
 			};
 			this.executeUpdate(sql.toString(), args);
-			
+				
 			//update activity
 			String sql2 = "select aid from algorithm where name = ? and parentcid = ?";
 			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
