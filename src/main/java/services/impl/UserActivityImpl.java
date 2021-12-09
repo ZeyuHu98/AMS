@@ -20,4 +20,12 @@ public class UserActivityImpl extends JdbcServicesSupport
 		Object[] args = {uid, activity, new Timestamp(new Date().getTime())};
 		executeUpdate(sql, args);
 	}
+	
+	public void deleteActivity() throws Exception
+	{
+		String sql = "delete from useractivity where uid = ?";
+		Object[] args = {this.getFromDto("duid")};
+		executeUpdate(sql, args);
+		
+	}
 }

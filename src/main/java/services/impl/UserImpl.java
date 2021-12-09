@@ -21,6 +21,13 @@ public class UserImpl extends JdbcServicesSupport
 		}
 		return dataMap;
 	}
+	
+	public void deleteUser() throws Exception
+	{
+		String sql = "delete from user where uid = ?";
+		Object[] args = {this.getFromDto("duid")};
+		this.executeUpdate(sql, args);
+	}
 
 	public boolean register() throws Exception
 	{
