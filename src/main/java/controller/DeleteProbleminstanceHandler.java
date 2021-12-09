@@ -6,6 +6,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import controller.support.Response;
 import services.impl.BenchmarkImpl;
+import services.impl.DeleteImpl;
 import services.impl.ProblemInstanceImpl;
 
 import java.util.HashMap;
@@ -13,22 +14,16 @@ import java.util.Map;
 
 public class DeleteProbleminstanceHandler implements RequestHandler<Map<String, Object>, Response>
 {
-	ProblemInstanceImpl pImpl = new ProblemInstanceImpl();
-	BenchmarkImpl bImpl = new BenchmarkImpl();
+	DeleteImpl dImpl = new DeleteImpl();
 	
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		pImpl.setDto(request);
-		bImpl.setDto(request);
+		dImpl.setDto(request);
 		Response response;
 		try
 		{
-			boolean success = pImpl.deleteProblemInstance();
-			// TODO discuss whether it is necessary to combine these two transaction into one transaction, 
-			// since if the benchmark fail, we have to roll back the previous transaction.
-			if (success)
-				success &= bImpl.deleteBenchmarkByProblemInstance();
+			boolean success = dImpl.deleteProblemInstance();
 			
 			if (success)
 				response = new Response(200, "Delete problem instance success", true);
