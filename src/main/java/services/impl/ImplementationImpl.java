@@ -8,6 +8,7 @@ import system.db.DBUtils;
 
 public class ImplementationImpl extends JdbcServicesSupport
 {
+	UserActivityImpl impl = new UserActivityImpl();
 	public List<Map<String, String>> query() throws Exception
 	{
 		Object[] args = {getFromDto("aid")};
@@ -25,6 +26,8 @@ public class ImplementationImpl extends JdbcServicesSupport
 					.append("insert into implementation(aid, language, code) values (?,?,?);");
 			Object[] args = {getFromDto("aid"), getFromDto("language"), getFromDto("code")};
 			this.executeUpdate(sql.toString(), args);
+			impl.update("add implementation", (String)getFromDto("uid"));
+
 		}
 		catch (Exception e)
 		{

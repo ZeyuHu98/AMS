@@ -8,6 +8,7 @@ import system.db.DBUtils;
 
 public class ProblemInstanceImpl extends JdbcServicesSupport 
 {
+	UserActivityImpl impl = new UserActivityImpl();
 	public List<Map<String, String>> query() throws Exception
 	{
 		StringBuilder sql =  new StringBuilder()
@@ -27,6 +28,7 @@ public class ProblemInstanceImpl extends JdbcServicesSupport
 					.append("insert into probleminstance (aid, instance, type) values (?,?,?);");
 			Object[] args = {getFromDto("aid"), getFromDto("instance"), getFromDto("type")};
 			this.executeUpdate(sql.toString(), args);
+			impl.update("add problemInstance", (String)getFromDto("uid"));
 		}
 		catch (Exception e)
 		{

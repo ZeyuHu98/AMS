@@ -10,6 +10,7 @@ import system.db.DBUtils;
 
 public class BenchmarkImpl extends JdbcServicesSupport
 {
+	UserActivityImpl impl = new UserActivityImpl();
 	public List<Map<String, String>> query() throws Exception
 	{
 		Object[] args = {getFromDto("iid"), getFromDto("pid")};
@@ -28,6 +29,8 @@ public class BenchmarkImpl extends JdbcServicesSupport
 			Object[] args = {getFromDto("iid"), getFromDto("pid"), "currentEmpty", getFromDto("time"), getFromDto("name"), getFromDto("l1cache"),
 					getFromDto("l2cache"), getFromDto("chip"), getFromDto("core"), getFromDto("thread")};
 			this.executeUpdate(sql.toString(), args);
+
+			impl.update("add benchmark", (String)getFromDto("uid"));
 		}
 		catch (Exception e)
 		{
@@ -50,23 +53,11 @@ public class BenchmarkImpl extends JdbcServicesSupport
 		DBUtils.beginTransaction();
 		try 
 		{
-			//TODO currently only has 1 as type, should changed to 2.
-			StringBuilder sql = new StringBuilder("select type from user WHERE uid = ?");
-			Object[] args = {this.getFromDto("uid")};
-			Map<String, String> dataMap = queryForMap(sql.toString(), args);
-			if (dataMap.get("type").equals("1"))
-			{
-				StringBuilder sql1 = new StringBuilder()
-						.append("delete from benchmark where iid = ? and pid = ?");
-				Object[] args1 = {getFromDto("iid"), getFromDto("pid")};
-				this.executeUpdate(sql1.toString(), args1);
-			}
-			else
-			{
-				res = false;
-			}
-			
-			
+			StringBuilder sql1 = new StringBuilder()
+					.append("delete from benchmark where bid = ?");
+			Object[] args1 = {getFromDto("bid")};
+			this.executeUpdate(sql1.toString(), args1);
+			impl.update("delete benchmark", (String)getFromDto("uid"), (String)getFromDto("bid"));
 		}
 		catch (Exception e)
 		{
