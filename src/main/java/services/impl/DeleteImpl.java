@@ -7,6 +7,7 @@ import system.db.DBUtils;
 
 public class DeleteImpl extends JdbcServicesSupport 
 {
+	UserActivityImpl impl = new UserActivityImpl();
 	public boolean deleteAlgorithm() throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
@@ -29,7 +30,7 @@ public class DeleteImpl extends JdbcServicesSupport
 					.append("delete from implementation where iid = ?");
 			Object[] args1 = {getFromDto("iid")};
 			this.executeUpdate(sql1.toString(), args1);
-			res = deleteBenchmarkByImplementation();
+			
 			
 		}
 		catch (Exception e)
@@ -43,8 +44,16 @@ public class DeleteImpl extends JdbcServicesSupport
 			DBUtils.commit();
 			DBUtils.close();
 		}
+		if (res)
+			res = deleteBenchmarkByImplementation();
+		if (res)
+		{
+			impl.update("delete implementation", (String)getFromDto("uid"), (String)getFromDto("iid"));
+		}
 		return res;
 	}
+	
+	
 	
 	
 	public boolean deleteProblemInstance() throws Exception
@@ -58,7 +67,6 @@ public class DeleteImpl extends JdbcServicesSupport
 					.append("delete from probleminstance where pid = ?");
 			Object[] args1 = {getFromDto("pid")};
 			this.executeUpdate(sql1.toString(), args1);
-			res = deleteBenchmarkByProblemInstance();
 					
 		}
 		catch (Exception e)
@@ -71,6 +79,12 @@ public class DeleteImpl extends JdbcServicesSupport
 		{
 			DBUtils.commit();
 			DBUtils.close();
+		}
+		if (res)
+			res = deleteBenchmarkByProblemInstance();
+		if (res)
+		{
+			impl.update("delete probleminstance", (String)getFromDto("uid"), (String)getFromDto("pid"));
 		}
 		return res;
 	}
