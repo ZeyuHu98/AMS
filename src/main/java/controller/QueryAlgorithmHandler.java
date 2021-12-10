@@ -8,6 +8,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import controller.support.Response;
 import services.impl.AlgorithmImpl;
+import services.impl.BenchmarkImpl;
 import services.impl.ImplementationImpl;
 import services.impl.ProblemInstanceImpl;
 
@@ -16,6 +17,7 @@ public class QueryAlgorithmHandler implements RequestHandler<Map<String, Object>
 	AlgorithmImpl impl1 = new AlgorithmImpl();
 	ProblemInstanceImpl impl2 = new ProblemInstanceImpl();
 	ImplementationImpl impl3 = new ImplementationImpl();
+	BenchmarkImpl impl4 = new BenchmarkImpl();
 
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
