@@ -23,6 +23,13 @@ public class UserActivityImpl extends JdbcServicesSupport
 		executeUpdate(sql, args);
 	}
 	
+	public void update(String activity, Object uid, Object oid) throws Exception
+	{
+		String sql = "insert into useractivity(uid, activity, oid, time) values (?,?,?,?);";
+		Object[] args = {uid, activity, oid, new Timestamp(new Date().getTime())};
+		executeUpdate(sql, args);
+	}
+	
 	public void deleteActivity() throws Exception
 	{
 		String sql = "delete from useractivity where uid = ?";

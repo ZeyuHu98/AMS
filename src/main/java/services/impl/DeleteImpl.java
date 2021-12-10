@@ -15,6 +15,7 @@ public class DeleteImpl extends JdbcServicesSupport
 		DeleteImpl impl = new DeleteImpl();
 		Map<String, Object> dto = new HashMap<>();
 		dto.put("aid", 1);
+		dto.put("uid", 7);
 		impl.setDto(dto);
 		try {
 			boolean res = impl.deleteAlgorithm();
@@ -79,7 +80,7 @@ public class DeleteImpl extends JdbcServicesSupport
 			String sql5 = "delete from probleminstance where aid = ?";
 			this.batchUpdate(sql5, aids.toArray());
 			
-			impl.update("delete classification", (String)getFromDto("uid"), (String)getFromDto("cid"));
+			impl.update("delete classification", getFromDto("uid"), getFromDto("cid"));
 		}
 		catch (Exception e) 
 		{
@@ -112,7 +113,7 @@ public class DeleteImpl extends JdbcServicesSupport
 			String sql4 = "delete from implementation where aid = ?";
 			executeUpdate(sql4, args);
 			
-			impl.update("delete algorithm", (String)getFromDto("uid"), (String)getFromDto("aid"));
+			impl.update("delete algorithm", getFromDto("uid"), getFromDto("aid"));
 		} 
 		catch (Exception e) 
 		{
