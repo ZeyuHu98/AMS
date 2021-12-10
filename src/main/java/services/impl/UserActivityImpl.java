@@ -4,6 +4,8 @@ import services.support.JdbcServicesSupport;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class UserActivityImpl extends JdbcServicesSupport 
 {
@@ -26,5 +28,11 @@ public class UserActivityImpl extends JdbcServicesSupport
 		String sql = "delete from useractivity where uid = ?";
 		Object[] args = {this.getFromDto("duid")};
 		executeUpdate(sql, args);
+	}
+	
+	public List<Map<String, String>> query() throws Exception
+	{
+		String sql = "select * from useractivity";
+		return queryForList(sql);
 	}
 }

@@ -27,6 +27,7 @@ public class UserImpl extends JdbcServicesSupport
 		String sql = "delete from user where uid = ?";
 		Object[] args = {this.getFromDto("duid")};
 		impl.update("Delete registered user.", (String)this.getFromDto("uid"), (String)this.getFromDto("duid"));
+		impl.deleteActivity();
 		this.executeUpdate(sql, args);
 	}
 

@@ -1,6 +1,6 @@
 package services.impl;
 
-import java.util.Map;
+import java.util.*;
 
 import services.support.JdbcServicesSupport;
 import system.db.DBUtils;
@@ -8,17 +8,120 @@ import system.db.DBUtils;
 public class DeleteImpl extends JdbcServicesSupport 
 {
 	UserActivityImpl impl = new UserActivityImpl();
-	public boolean deleteAlgorithm() throws Exception
+	
+	public static void main(String[] args) 
 	{
-		StringBuilder sql = new StringBuilder()
-				.append("delete from algorithm where aid = ");
-		Object[] args = {getFromDto("aid")};
-		this.batchUpdate(sql.toString(), args);
-		
-		return true;
-		
+		System.out.println("test");
+		DeleteImpl impl = new DeleteImpl();
+		Map<String, Object> dto = new HashMap<>();
+		dto.put("aid", 1);
+		impl.setDto(dto);
+		try {
+			boolean res = impl.deleteAlgorithm();
+			System.out.println(res);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	
+	public boolean deleteClassification() throws Exception
+	{
+		String sql;
+		List<Map<String, String>> mapList;
+		// BFS get all classification id that need to be deleted
+		Queue<Object> queue = new LinkedList<>();
+		queue.add(getFromDto("cid"));
+		List<Object> cids = new ArrayList<>();
+		cids.add(getFromDto("cid"));
+		while (!queue.isEmpty())
+		{
+			int size = queue.size();
+			while (size-- > 0)
+			{
+				sql = "select cid from classification where parentcid = " + queue.poll();
+				mapList = queryForList(sql);
+				for (Map<String, String> map: mapList)
+				{
+					queue.add(map.get("cid"));
+					cids.add(map.get("cid"));
+				}
+			}
+		}
+		
+		// get all algorithm id
+		List<Object> aids = new ArrayList<>();
+		StringBuilder sb = new StringBuilder("select aid from algorithm where parentcid = ?");
+		for (int i = 0; i < cids.size()-1; i++)
+			sb.append(" or parentcid = ?");
+		mapList = queryForList(sb.toString(), cids.toArray());
+		for (Map<String, String> map: mapList)
+			aids.add(map.get("aid"));
+		
+		boolean res = true;
+		try
+		{
+			// delete classifications
+			String sql1 = "delete from classification where cid = ?";
+			this.batchUpdate(sql1, cids.toArray());
+			// delete algorithm
+			String sql2 = "delete from algorithm where aid = ?";
+			this.batchUpdate(sql2, aids.toArray());
+			// delete benchmark
+			String sql3 = 
+					"delete b from benchmark b, implementation i where i.iid = b.iid and i.aid = ?";
+			this.batchUpdate(sql3, aids.toArray());
+			// delete implementation
+			String sql4 = "delete from implementation where aid = ?";
+			this.batchUpdate(sql4, aids.toArray());
+			// delete problemInstance
+			String sql5 = "delete from probleminstance where aid = ?";
+			this.batchUpdate(sql5, aids.toArray());
+			
+			impl.update("delete classification", (String)getFromDto("uid"), (String)getFromDto("cid"));
+		}
+		catch (Exception e) 
+		{
+			res = false;
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	public boolean deleteAlgorithm() throws Exception
+	{
+		boolean res = true;
+		
+		try 
+		{
+			Object[] args= {this.getFromDto("aid")};
+		
+			// delete algorithm
+			String sql1 = "delete from algorithm where aid = ?";
+			executeUpdate(sql1, args);
+			// delete benchmark
+			String sql2 = 
+					"delete b from benchmark b, implementation i where i.iid = b.iid and i.aid = ?";
+			executeUpdate(sql2, args);
+			// delete implementation
+			String sql3 = "delete from implementation where aid = ?";
+			executeUpdate(sql3, args);
+			// delete problem instance
+			String sql4 = "delete from implementation where aid = ?";
+			executeUpdate(sql4, args);
+			
+			impl.update("delete algorithm", (String)getFromDto("uid"), (String)getFromDto("aid"));
+		} 
+		catch (Exception e) 
+		{
+			res = false;
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 	public boolean deleteImplementation() throws Exception
 	{
@@ -30,8 +133,6 @@ public class DeleteImpl extends JdbcServicesSupport
 					.append("delete from implementation where iid = ?");
 			Object[] args1 = {getFromDto("iid")};
 			this.executeUpdate(sql1.toString(), args1);
-			
-			
 		}
 		catch (Exception e)
 		{
@@ -62,12 +163,10 @@ public class DeleteImpl extends JdbcServicesSupport
 		DBUtils.beginTransaction();
 		try 
 		{
-			
 			StringBuilder sql1 = new StringBuilder()
 					.append("delete from probleminstance where pid = ?");
 			Object[] args1 = {getFromDto("pid")};
-			this.executeUpdate(sql1.toString(), args1);
-					
+			this.executeUpdate(sql1.toString(), args1);	
 		}
 		catch (Exception e)
 		{
