@@ -62,5 +62,12 @@ public class AlgorithmImpl extends JdbcServicesSupport
 		return this.queryForMap(sql.toString(), args);
 	}
 	
+	public void changeClassification() throws Exception
+	{
+		String sql = "update algorithm set parentcid = ? where aid = ?";
+		Object[] args = {getFromDto("parentcid"), getFromDto("aid")};
+		executeUpdate(sql, args);
+		impl.update("Change parent classification", (String)getFromDto("uid"), (String)getFromDto("aid"));
+	}
 
 }

@@ -26,6 +26,5 @@ public class UserActivityImpl extends JdbcServicesSupport
 		String sql = "delete from useractivity where uid = ?";
 		Object[] args = {this.getFromDto("duid")};
 		executeUpdate(sql, args);
-		
 	}
 }

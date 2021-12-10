@@ -26,13 +26,12 @@ public class UserImpl extends JdbcServicesSupport
 	{
 		String sql = "delete from user where uid = ?";
 		Object[] args = {this.getFromDto("duid")};
+		impl.update("Delete registered user.", (String)this.getFromDto("uid"), (String)this.getFromDto("duid"));
 		this.executeUpdate(sql, args);
 	}
 
 	public boolean register() throws Exception
 	{
-
-		
 		// check whether the uname already exists
 		StringBuilder sql1 = new StringBuilder("select * from user where uname = ?");
 		Object[] args1 = {this.getFromDto("uname")};
