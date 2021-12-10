@@ -25,7 +25,7 @@ public class BenchmarkImpl extends JdbcServicesSupport
 		try 
 		{
 			StringBuilder sql = new StringBuilder()
-					.append("insert into benchmark(iid, pid, bucketurl, time, name, l1cache, l2cache, chip, core, thread) values (?,?,?, ?);");
+					.append("insert into benchmark(iid, pid, bucketurl, time, name, l1cache, l2cache, chip, core, thread) values (?,?,?,?,?,?,?,?,?,?);");
 			Object[] args = {getFromDto("iid"), getFromDto("pid"), "currentEmpty", getFromDto("time"), getFromDto("name"), getFromDto("l1cache"),
 					getFromDto("l2cache"), getFromDto("chip"), getFromDto("core"), getFromDto("thread")};
 			this.executeUpdate(sql.toString(), args);
