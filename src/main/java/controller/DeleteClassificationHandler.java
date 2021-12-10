@@ -18,6 +18,7 @@ public class DeleteClassificationHandler implements RequestHandler<Map<String, O
 		
 		try 
 		{
+			impl.setDto(request);
 			boolean success = impl.deleteClassification();
 			if (success)
 				response = new Response(200, "Delete classification succeed.", success);

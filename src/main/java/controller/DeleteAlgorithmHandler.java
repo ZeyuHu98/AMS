@@ -8,7 +8,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import controller.support.Response;
 import services.impl.DeleteImpl;
 
-public class DeleteAlgorithmHander implements RequestHandler<Map<String, Object>, Response> 
+public class DeleteAlgorithmHandler implements RequestHandler<Map<String, Object>, Response> 
 {
 	DeleteImpl impl = new DeleteImpl();
 	@Override
@@ -18,6 +18,7 @@ public class DeleteAlgorithmHander implements RequestHandler<Map<String, Object>
 		
 		try 
 		{
+			impl.setDto(request);
 			boolean success = impl.deleteAlgorithm();
 			if (success)
 				response = new Response(200, "Delete algorithm succeed.", success);
