@@ -1,6 +1,6 @@
 package services.impl;
 
-import java.util.Map;
+import java.util.*;
 
 import services.support.JdbcServicesSupport;
 
@@ -27,10 +27,16 @@ public class UserImpl extends JdbcServicesSupport
 		String sql = "delete from user where uid = ?";
 		Object[] args = {this.getFromDto("duid")};
 		impl.update("Delete registered user.", this.getFromDto("uid"), this.getFromDto("duid"));
-		impl.deleteActivity();
+		impl.deleteActivity(this.getFromDto("duid"));
 		this.executeUpdate(sql, args);
 	}
 
+	public List<Map<String, String>> getUser() throws Exception
+	{
+		String sql = "select * from user";
+		return queryForList(sql);
+	}
+	
 	public boolean register() throws Exception
 	{
 		// check whether the uname already exists

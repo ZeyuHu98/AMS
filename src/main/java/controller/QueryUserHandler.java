@@ -1,32 +1,29 @@
 package controller;
 
-import java.util.List;
-import java.util.Map;
-
+import java.util.Map;import com.amazonaws.Request;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import controller.support.Response;
-import services.impl.UserActivityImpl;
+import services.impl.UserImpl;
 
-public class QueryUserActivityHandler implements RequestHandler<Map<String, Object>, Response>
+public class QueryUserHandler implements RequestHandler<Map<String, Object>, Response> 
 {
+	UserImpl impl = new UserImpl();
 	@Override
 	public Response handleRequest(Map<String, Object> request, Context context) 
 	{
-		UserActivityImpl impl = new UserActivityImpl();
 		Response response;
-		try
+		try 
 		{
 			impl.setDto(request);
-			response = new Response(200, "Query user activity succeed.", true, impl.query());
-		}
-		catch (Exception e)
+			response = new Response(200, "Query registered user succeed.", true, impl.getUser());
+		} 
+		catch (Exception e) 
 		{
 			e.printStackTrace();
 			response = new Response();
 		}
-		// TODO Auto-generated method stub
 		return response;
 	}
 }

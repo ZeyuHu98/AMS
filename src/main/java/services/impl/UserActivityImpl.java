@@ -23,16 +23,17 @@ public class UserActivityImpl extends JdbcServicesSupport
 		executeUpdate(sql, args);
 	}
 	
-	public void deleteActivity() throws Exception
+	public void deleteActivity(Object duid) throws Exception
 	{
 		String sql = "delete from useractivity where uid = ?";
-		Object[] args = {this.getFromDto("duid")};
+		Object[] args = {duid};
 		executeUpdate(sql, args);
 	}
 	
 	public List<Map<String, String>> query() throws Exception
 	{
-		String sql = "select * from useractivity";
-		return queryForList(sql);
+		String sql = "select * from useractivity where uid = ?";
+		Object[] args = {getFromDto("quid")};
+		return queryForList(sql, args);
 	}
 }
