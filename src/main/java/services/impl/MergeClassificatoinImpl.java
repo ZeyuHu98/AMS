@@ -18,6 +18,6 @@ public class MergeClassificatoinImpl extends JdbcServicesSupport
 		Object[] args3 = {getFromDto("cid2")};
 		executeUpdate(sql3, args3);
 		
-		impl.update("Merge existing classifications.", (String)getFromDto("uid"));
+		impl.update("merge existing classifications", getFromDto("uid"));
 	}
 }

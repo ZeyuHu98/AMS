@@ -26,7 +26,7 @@ public class ImplementationImpl extends JdbcServicesSupport
 					.append("insert into implementation(aid, language, code) values (?,?,?);");
 			Object[] args = {getFromDto("aid"), getFromDto("language"), getFromDto("code")};
 			this.executeUpdate(sql.toString(), args);
-			impl.update("add implementation", (String)getFromDto("uid"));
+			impl.update("add implementation", getFromDto("uid"));
 
 		}
 		catch (Exception e)

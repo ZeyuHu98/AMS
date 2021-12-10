@@ -30,7 +30,7 @@ public class BenchmarkImpl extends JdbcServicesSupport
 					getFromDto("l2cache"), getFromDto("chip"), getFromDto("core"), getFromDto("thread")};
 			this.executeUpdate(sql.toString(), args);
 
-			impl.update("add benchmark", (String)getFromDto("uid"));
+			impl.update("add benchmark", getFromDto("uid"));
 		}
 		catch (Exception e)
 		{
@@ -57,7 +57,7 @@ public class BenchmarkImpl extends JdbcServicesSupport
 					.append("delete from benchmark where bid = ?");
 			Object[] args1 = {getFromDto("bid")};
 			this.executeUpdate(sql1.toString(), args1);
-			impl.update("delete benchmark", (String)getFromDto("uid"), (String)getFromDto("bid"));
+			impl.update("delete benchmark", getFromDto("uid"), getFromDto("bid"));
 		}
 		catch (Exception e)
 		{

@@ -32,7 +32,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 			String sql2 = "select aid from algorithm where name = ? and parentcid = ?";
 			Object[] args2 = {getFromDto("name"), getFromDto("parentcid")};
 			String oid = queryForMap(sql2, args2).get("aid");
-			impl.update("add algorithm", (String)getFromDto("uid"), oid);
+			impl.update("add algorithm", getFromDto("uid"), oid);
 			
 		} 
 		catch (Exception e) 
@@ -67,7 +67,7 @@ public class AlgorithmImpl extends JdbcServicesSupport
 		String sql = "update algorithm set parentcid = ? where aid = ?";
 		Object[] args = {getFromDto("parentcid"), getFromDto("aid")};
 		executeUpdate(sql, args);
-		impl.update("Change parent classification", (String)getFromDto("uid"), (String)getFromDto("aid"));
+		impl.update("Change parent classification", getFromDto("uid"), getFromDto("aid"));
 	}
 
 }

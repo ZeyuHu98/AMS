@@ -28,7 +28,7 @@ public class ProblemInstanceImpl extends JdbcServicesSupport
 					.append("insert into probleminstance (aid, instance, type) values (?,?,?);");
 			Object[] args = {getFromDto("aid"), getFromDto("instance"), getFromDto("type")};
 			this.executeUpdate(sql.toString(), args);
-			impl.update("add problemInstance", (String)getFromDto("uid"));
+			impl.update("add problemInstance", getFromDto("uid"));
 		}
 		catch (Exception e)
 		{
