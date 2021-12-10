@@ -14,7 +14,7 @@ public class BenchmarkImpl extends JdbcServicesSupport
 	public List<Map<String, String>> query() throws Exception
 	{
 		Object[] args = {getFromDto("iid"), getFromDto("pid")};
-		return queryForList("select * from implementation "
+		return queryForList("select * from benchmark "
 				+ "where iid = ? and pid = ?", args);
 	}
 	
