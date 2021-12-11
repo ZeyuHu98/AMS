@@ -22,7 +22,9 @@ public class QueryBenchmarkHandler implements RequestHandler<Map<String, Object>
 		List<Map<String, String>> dataList = new ArrayList<>();
 		int statusCode = 200;
 		try
+		
 		{
+			impl.setDto(request);
 			dataList = impl.query();
 		}
 		catch (Exception e) 

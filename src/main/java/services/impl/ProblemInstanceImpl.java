@@ -25,8 +25,8 @@ public class ProblemInstanceImpl extends JdbcServicesSupport
 		try 
 		{
 			StringBuilder sql = new StringBuilder()
-					.append("insert into probleminstance (aid, instance, type) values (?,?,?);");
-			Object[] args = {getFromDto("aid"), getFromDto("instance"), getFromDto("type")};
+					.append("insert into probleminstance (aid, input, output, timeComplexityType) values (?,?,?,?);");
+			Object[] args = {getFromDto("aid"), getFromDto("input"), getFromDto("output"), getFromDto("timeComplexityType")};
 			this.executeUpdate(sql.toString(), args);
 			impl.update("add problemInstance", getFromDto("uid"));
 		}

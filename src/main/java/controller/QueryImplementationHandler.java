@@ -23,6 +23,7 @@ public class QueryImplementationHandler implements RequestHandler<Map<String, Ob
 		int statusCode = 200;
 		try
 		{
+			impl.setDto(request);
 			dataList = impl.query();
 		}
 		catch (Exception e) 
