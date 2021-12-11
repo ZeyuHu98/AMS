@@ -1,16 +1,10 @@
 package controller;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import controller.support.Response;
 import services.impl.AlgorithmImpl;
-import services.impl.ClassificationImpl;
-import services.impl.UserActivityImpl;
-import system.tools.Tools;
-
-import java.util.HashMap;
 import java.util.Map;
 
 public class AddAlgorithmHandler implements RequestHandler<Map<String, Object>, Response>
