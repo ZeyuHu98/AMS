@@ -30,17 +30,17 @@ public class DBUtils
 	{
 		try 
 		{
-			//��ȡ��Դ�ļ�����������
-			ResourceBundle bundle=ResourceBundle.getBundle("DBOptions");
-			//ͨ����������,��ȡ����
-			driver=bundle.getString("DRIVER");
-			url=bundle.getString("URL");
-			userName=bundle.getString("USERNAME");
-			password=bundle.getString("PASSWORD");
-			//3.��������
+//			ResourceBundle bundle=ResourceBundle.getBundle("DBOptions");
+//			driver=bundle.getString("DRIVER");
+//			url=bundle.getString("URL");
+//			userName=bundle.getString("USERNAME");
+//			password=bundle.getString("PASSWORD");
 //			Class.forName(driver);
 			
 			
+			url = "jdbc:mysql://systemdb.cjshep01ouqy.us-east-2.rds.amazonaws.com/app";
+			userName = "admin";
+			password = "fuckthestupidhacker";
 		}
 		catch (Exception e) 
 		{
