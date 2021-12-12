@@ -14,14 +14,14 @@ public class AddBenchmarkTest extends LambdaTest
 	@Test
 	public void testAddBenchmark()
 	{
-		apiCall = "query algorithm";
+		apiCall = "add benchmark";
 		handler = new AddBenchmarkHandler();
 		Map<String, Object> successRequest = new HashMap<>();
 		successRequest.put("uid", 7);
 		successRequest.put("iid", 1);
 		successRequest.put("pid", 1);
 		successRequest.put("time", 34);
-		successRequest.put("name", "123");
+		successRequest.put("name", "this is for test");
 		successRequest.put("l1cache", "4mb");
 		successRequest.put("l2cache", "8mb");
 		successRequest.put("chip", "m1");

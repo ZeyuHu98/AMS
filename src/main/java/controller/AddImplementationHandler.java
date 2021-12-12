@@ -26,7 +26,7 @@ public class AddImplementationHandler implements RequestHandler<Map<String, Obje
 			if (success)
 				response = new Response(200, "Add implementation succeed.", true);
 			else
-				response = new Response(304, "Add implementation failed.", false);
+				response = new Response(200, "Add implementation failed.", false);
 		}
 		catch (Exception e) 
 		{

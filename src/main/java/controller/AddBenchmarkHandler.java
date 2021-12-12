@@ -26,7 +26,7 @@ public class AddBenchmarkHandler implements RequestHandler<Map<String, Object>, 
 			if (success)
 				response = new Response(200, "Add benchmark succeed.", true);
 			else
-				response = new Response(304, "Add benchmark failed.", false);
+				response = new Response(200, "Add benchmark failed.", false);
 		}
 		catch (Exception e) 
 		{

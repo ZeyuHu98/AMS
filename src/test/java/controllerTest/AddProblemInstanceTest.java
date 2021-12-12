@@ -6,21 +6,22 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import controller.AddImplementationHandler;
+import controller.AddProblemInstanceHandler;
 import testSupport.LambdaTest;
 
-public class AddImplementationTest extends LambdaTest
+public class AddProblemInstanceTest extends LambdaTest
 {
 	@Test
-	public void testAddImplementation()
+	public void testAddProblemInstance()
 	{
-		apiCall = "add ImplementationTest";
-		handler = new AddImplementationHandler();
+		apiCall = "add ProblemInstance";
+		handler = new AddProblemInstanceHandler();
 		Map<String, Object> successRequest = new HashMap<>();
 		successRequest.put("uid", 7);
 		successRequest.put("aid", 1);
-		successRequest.put("language", "java");
-		successRequest.put("code", "this is for test");
+		successRequest.put("input", "1233");
+		successRequest.put("output", "this is for test");
+		successRequest.put("timeComplexityType", "0");
 		try
 		{
 			this.testSucceed(successRequest);
