@@ -16,12 +16,20 @@ public class QueryAlgorithmTest extends LambdaTest
 	{
 		apiCall = "query algorithm";
 		handler = new QueryAlgorithmHandler();
-		Map<String, Object> requestSuccess = new HashMap<>();
+		Map<String, Object> successRequest = new HashMap<>();
+		successRequest.put("uid", 1);
+		successRequest.put("parentcid", 1);
+		successRequest.put("name", "testAlgo");
+		successRequest.put("introduction", "testIntroduction");
+		successRequest.put("content", "testContent");
+		successRequest.put("timecplx", "testTimecplx");
+		successRequest.put("spacecplx", "testSpacecplx");
 		try
 		{
-			testSucceed(requestSuccess);
+			this.testSucceed(successRequest);
+			this.testFail(new HashMap<String, Object>());
 		}
-		catch (AssertionError e) 
+		catch (AssertionError e)
 		{
 			Assert.fail(e.getMessage());
 		}
