@@ -31,7 +31,7 @@ public class AddAlgorithmTest extends LambdaTest
 		}
 		catch (AssertionError e)
 		{
-			Assert.fail("Test fail: " + e.getMessage());
+			Assert.fail(e.getMessage());
 		}
 		
 	}
