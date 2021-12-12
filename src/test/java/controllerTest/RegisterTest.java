@@ -12,7 +12,7 @@ import testSupport.LambdaTest;
 public class RegisterTest extends LambdaTest
 {
 	@Test
-	public void testAddAlgorithm() throws Exception
+	public void testRegister() throws Exception
 	{
 		apiCall = "register";
 		handler = new RegisterHandler();

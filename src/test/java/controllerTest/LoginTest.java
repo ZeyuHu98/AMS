@@ -26,7 +26,6 @@ public class LoginTest extends LambdaTest
 		{
 			this.testSucceed(requestSuccess);
 			this.testFail(requestFail);
-			this.testException(new HashMap<>());
 		}
 		catch (AssertionError e)
 		{

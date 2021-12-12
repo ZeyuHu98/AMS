@@ -1,6 +1,5 @@
 package services.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import services.support.JdbcServicesSupport;
@@ -9,11 +8,6 @@ import system.db.DBUtils;
 public class ClassificationImpl extends JdbcServicesSupport
 {
 	UserActivityImpl impl = new UserActivityImpl();
-	
-	public List<Map<String, String>> query() throws Exception
-	{
-		return queryForList("select * from classification");
-	}
 	
 	public boolean addClassification() throws Exception
 	{

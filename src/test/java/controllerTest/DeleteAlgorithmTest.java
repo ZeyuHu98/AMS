@@ -18,7 +18,7 @@ public class DeleteAlgorithmTest extends LambdaTest
 		handler = new DeleteAlgorithmHandler();
 		Map<String, Object> request = new HashMap<>();
 		request.put("uid", 1);
-		request.put("aid", 1);
+		request.put("aid", 5);
 		try
 		{
 			testSucceed(request);

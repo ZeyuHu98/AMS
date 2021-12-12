@@ -9,24 +9,6 @@ public class DeleteImpl extends JdbcServicesSupport
 {
 	UserActivityImpl impl = new UserActivityImpl();
 	
-	public static void main(String[] args) 
-	{
-		System.out.println("test");
-		DeleteImpl impl = new DeleteImpl();
-		Map<String, Object> dto = new HashMap<>();
-		dto.put("aid", 1);
-		dto.put("uid", 7);
-		impl.setDto(dto);
-		try {
-			boolean res = impl.deleteAlgorithm();
-			System.out.println(res);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
 	public boolean deleteClassification() throws Exception
 	{
 		String sql;
