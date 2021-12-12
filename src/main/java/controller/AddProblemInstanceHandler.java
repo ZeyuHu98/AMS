@@ -26,7 +26,7 @@ public class AddProblemInstanceHandler implements RequestHandler<Map<String, Obj
 			if (success)
 				response = new Response(200, "Add problem instance succeed.", true);
 			else
-				response = new Response(304, "Add problem instance failed.", false);
+				response = new Response(200, "Add problem instance failed.", false);
 		}
 		catch (Exception e) 
 		{

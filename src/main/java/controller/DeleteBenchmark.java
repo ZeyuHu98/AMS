@@ -25,7 +25,7 @@ public class DeleteBenchmark implements RequestHandler<Map<String, Object>, Resp
 			if (success)
 				response = new Response(200, "Delete benchmark success", true);
 			else
-				response = new Response(304, "Delete benchmark failed", false);
+				response = new Response(200, "Delete benchmark failed", false);
 		}
 		catch (Exception e) 
 		{

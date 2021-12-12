@@ -28,7 +28,7 @@ public class DeleteProbleminstanceHandler implements RequestHandler<Map<String, 
 			if (success)
 				response = new Response(200, "Delete problem instance success", true);
 			else
-				response = new Response(304, "Delete problem instance failed", false);
+				response = new Response(200, "Delete problem instance failed", false);
 		}
 		catch (Exception e) 
 		{
