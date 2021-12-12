@@ -9,7 +9,7 @@ import org.junit.Test;
 import controller.QueryAlgorithmHandler;
 import testSupport.LambdaTest;
 
-public class QueryAlgorithm extends LambdaTest
+public class QueryAlgorithmTest extends LambdaTest
 {
 	@Test
 	public void testQueryAlgorithm()

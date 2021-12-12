@@ -15,24 +15,22 @@ public class AddAlgorithmTest extends LambdaTest
 	{
 		apiCall = "add algorithm";
 		handler = new AddAlgorithmHandler();
-		Map<String, Object> requestSuccess = new HashMap<>();
-		requestSuccess.put("uid", 1);
-		requestSuccess.put("parentcid", 1);
-		requestSuccess.put("name", "testAlgo");
-		requestSuccess.put("introduction", "testIntroduction");
-		requestSuccess.put("content", "testContent");
-		requestSuccess.put("timecplx", "testTimecplx");
-		requestSuccess.put("spacecplx", "testSpacecplx");
-		Map<String, Object> requestFail = new HashMap<>();
+		Map<String, Object> request = new HashMap<>();
+		request.put("uid", 1);
+		request.put("parentcid", 1);
+		request.put("name", "testAlgo");
+		request.put("introduction", "testIntroduction");
+		request.put("content", "testContent");
+		request.put("timecplx", "testTimecplx");
+		request.put("spacecplx", "testSpacecplx");
 		try
 		{
-			this.testSucceed(requestSuccess);
-			this.testFail(requestFail);
+			this.testSucceed(request);
+			this.testFail(new HashMap<String, Object>());
 		}
 		catch (AssertionError e)
 		{
 			Assert.fail(e.getMessage());
 		}
-		
 	}
 }
