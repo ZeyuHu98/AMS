@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.Map;import com.amazonaws.Request;
+import java.util.Map;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
