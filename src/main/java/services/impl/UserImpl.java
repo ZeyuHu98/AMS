@@ -48,7 +48,7 @@ public class UserImpl extends JdbcServicesSupport
 		if (dataMap == null)
 		{
 			StringBuilder sql2 = new StringBuilder("insert into user(uname, password, type) values (?, ?, ?)");
-			Object[] args2 = {this.getFromDto("uname"), this.getFromDto("password"), 1};
+			Object[] args2 = {this.getFromDto("uname"), this.getFromDto("password"), this.getFromDto("type")};
 			boolean res = this.executeUpdate(sql2.toString(), args2) == 1;
 			
 			String sql = "select uid from user where uname = ?";
